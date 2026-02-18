@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node posts.js",
-    "dev" :"node --watch posts.js"
+    "start": "node api.js",
+    "dev" :"node --watch api.js"
   },
   "author": "giorgio laera",
   "license": "ISC",
