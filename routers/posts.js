@@ -48,12 +48,14 @@ const posts = [
   },
 ];
 
+
 //index(cRud) "visualizzare tutti gli elementi"
 router.get('/', (req,res)=>{
     res.json(posts);
 })
 //Show(cRud) visualizzare singolo elemento
 router.get('/:id', (req,res)=>{
+    res.json(posts.filter((post)=> post.id == req.params.id))
     res.send(`hai rischiesto il SINGOLO FILE di ${req.params.id}`);
 })
 //Store(Crud) per aggiungere un elemento
