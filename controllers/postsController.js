@@ -1,5 +1,5 @@
 const posts = require('../data/posts')
-console.log(posts);
+console.log('posts',posts);
 function index (req,res) {
     let result = posts;
 
@@ -41,4 +41,4 @@ const postsController = {
     destroy
 };
 
-module.export = postsController;
+module.exports = postsController;

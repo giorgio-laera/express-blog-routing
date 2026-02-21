@@ -43,4 +43,4 @@ const posts = [
     tags: ["Dolci", "Dolci al cioccolato", "Torte", "Ricette vegetariane", "Ricette al forno"],
   },
 ];
-module.export= posts
+module.exports= posts;
