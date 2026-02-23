@@ -3,8 +3,15 @@ const posts = require('../data/posts')
 function index(req, res) {
 	let result = posts;
 
-	res.json(result);
 
+	if (req.query.tags){
+		result=posts.filter(post=>post.tags.includes(req.query.tags));
+	}
+
+
+
+	res.json(result);
+	console.log('questo e result',result)
 }
 
 function show(req, res) {
@@ -20,7 +27,7 @@ function show(req, res) {
 		res.status(404)
 		result = {
 			error: "Not Found",
-			message: "Pizza non trovata"
+			message: "Post non trovato"
 		}}
 	
 
@@ -44,8 +51,22 @@ function modify(req, res) {
 }
 
 function destroy(req, res) {
+const id =Number(req.params.id)
+const postsFiltered = posts.find(post=>post.id==id);
 
-	res.send(`hai chiesto di ELIMINARE un elemento ${req.params.id} `);
+if (!postsFiltered){
+	res.status(404)
+	return res.send(result = {
+			error: "Not Found",
+			message: "Post non trovato"
+		});
+}
+	posts.splice(posts.indexOf(postsFiltered),1);
+
+	console.log(`post ${id} eliminato, nuova lista dei post:`,posts);
+    
+	return res.status(204);
+
 }
 const postsController = {
 	index,
