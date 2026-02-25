@@ -19,7 +19,7 @@ function show(req, res) {
 	let result = [];
 
 	if (!isNaN(id)) {
-		result = posts.filter((post) => post.id == req.params.id);
+		result = posts.find(post => post.id == id);
 
 		res.status(200)
 	}
@@ -39,23 +39,42 @@ function show(req, res) {
 function store(req, res) {
 
 	const newId = posts.at(-1).id + 1;
-	console.log("newId", newId)
+	//console.log("newId", newId)
 
-	console.log(req.body.title)
+	//console.log(req.body.title)
 	newPost = {
 		id: newId,
-		title:req.body.title,
-		img:req.body.img,
-		descrizione:req.body.descrizione
+		title: req.body.title,
+		img: req.body.img,
+		descrizione: req.body.descrizione
 	}
-	posts.push(newPost) 
-	console.log("posts", posts)
-	res.send('hai chiesto di CREARE un nuovo elemento');
+	posts.push(newPost)
+	//console.log("posts", posts)
+	res.sendStatus(201);
 }
 
 function update(req, res) {
+	const id = Number(req.params.id);
+	let result = "";
+	result = posts.find(post => post.id == id);
+	if (!result) {
+		res.status(404)
+		return res.json(result = {
+			error: "Not Found",
+			message: "Post non trovato"
+		});
+	}
 
-	res.send(`hai chiesto di MODIFICARE un INTERO ELEMENTO ${req.params.id}`);
+
+	result.title = req.body.title;
+	result.content = req.body.content
+	result.image = req.body.image
+	result.tags = req.body.tags
+	res.status(200)
+
+
+	//console.log(result.lenght)
+	res.json(result)
 }
 
 function modify(req, res) {
