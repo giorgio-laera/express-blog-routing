@@ -9,7 +9,7 @@ app.get('/', (req,res)=>{
  res.send("ciao")
 })
 app.use(express.static('public'));
-
+app.use(express.json());
 app.use('/posts', postsRouter);
 
 app.listen(port, () =>{
