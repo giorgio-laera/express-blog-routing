@@ -66,12 +66,12 @@ router.get('/:id',checkTime, postsController.show)
 router.post('/', postsController.store)
 
 //Update(crUd) serve per MODIFICARE un INTERO ELEMENTO
-router.put('/:id', postsController.update)
+router.put('/:id', checkTime, postsController.update)
 
 //Modify (crUd) serve  MODIFICARE (parzialmente) un elemento
-router.patch('/:id', postsController.modify)
+router.patch('/:id',checkTime, postsController.modify)
 
 // Destroy (cruD) serve per ELIMINARE un elemento
-router.delete('/:id', postsController.destroy)
+router.delete('/:id',checkTime, postsController.destroy)
 
 module.exports = router;

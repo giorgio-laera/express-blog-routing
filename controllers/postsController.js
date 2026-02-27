@@ -54,16 +54,16 @@ function store(req, res) {
 }
 
 function update(req, res) {
-	const id = Number(req.params.id);
-	let result = "";
-	result = posts.find(post => post.id == id);
-	if (!result) {
-		res.status(404)
-		return res.json(result = {
-			error: "Not Found",
-			message: "Post non trovato"
-		});
-	}
+	const id = (req.params.id);
+	// let result = "";
+	 result = posts.find(post => post.id == id);
+	// if (!result) {
+	// 	res.status(404)
+	// 	return res.json(result = {
+	// 		error: "Not Found",
+	// 		message: "Post non trovato"
+	// 	});
+	// }
 
 
 	result.title = req.body.title;
@@ -78,7 +78,7 @@ function update(req, res) {
 }
 
 function modify(req, res) {
-const id = Number(req.params.id)
+const id = (req.params.id)
 	const result = posts.find(post => post.id == id);
 
 	const title= req.body.title;
@@ -86,49 +86,42 @@ const id = Number(req.params.id)
 	const image= req.body.img;
 	const tags= req.body.tags;
 
-	if (!result) {
-		res.status(404)
-		return res.json(result = {
-			error: "Not Found",
-			message: "Post non trovato"
-		});
-	}
-	if(title && content && image && tags){
-		res.status(404)
-		return res.json({
-			error : "Wrong method",
-			message: "to change all data you have to use the wrong method"
-		})
-	}else if (title){
+	// if (!result) {
+	// 	res.status(404)
+	// 	return res.json(result = {
+	// 		error: "Not Found",
+	// 		message: "Post non trovato"
+	// 	});
+	// }
+	
+	if (title){
   		result.title=title;
-		
-		
 
-	}else if (content){
+	} if (content){
 		result.content =content;
 		
-	}else if (image){
+	} if (image){
 		result.image =image;
 		
-	}else if (tags){
+	} if (tags){
 		result.tags = tags;
 		
 	}
 	console.log(result)
-	res.send(`hai richiesto di MODIFICARE (parzialmente) un elemento ${req.params.id} `);
+	res.send(`hai Modificato (parzialmente) un elemento ${req.params.id} `);
 }
 
 function destroy(req, res) {
-	const id = Number(req.params.id)
+	const id = (req.params.id)
 	const postsFiltered = posts.find(post => post.id == id);
 
-	if (!postsFiltered) {
-		res.status(404)
-		return res.json(result = {
-			error: "Not Found",
-			message: "Post non trovato"
-		});
-	}
+	// if (!postsFiltered) {
+	// 	res.status(404)
+	// 	return res.json(result = {
+	// 		error: "Not Found",
+	// 		message: "Post non trovato"
+	// 	});
+	// }
 	posts.splice(posts.indexOf(postsFiltered), 1);
 
 	console.log(`post ${id} eliminato, nuova lista dei post:`, posts);
