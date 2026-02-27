@@ -2,6 +2,7 @@
 const express = require('express');
 const router =express.Router();
 const postsController =require('../controllers/postsController');
+const checkTime= require('../middlewares/checkTime')
 //console.log(router)
 
 //console.log(postsController);
@@ -59,7 +60,7 @@ const postsController =require('../controllers/postsController');
 router.get('/', postsController.index)
 
 //Show(cRud) visualizzare singolo elemento
-router.get('/:id', postsController.show)
+router.get('/:id',checkTime, postsController.show)
 
 //Store(Crud) per aggiungere un elemento
 router.post('/', postsController.store)

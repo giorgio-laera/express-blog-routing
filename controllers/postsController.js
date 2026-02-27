@@ -1,5 +1,5 @@
 const posts = require('../data/posts')
-
+//const checkTime= require('../middlewares/checkTime')
 function index(req, res) {
 	let result = posts;
 
@@ -15,24 +15,24 @@ function index(req, res) {
 }
 
 function show(req, res) {
-	const id = Number(req.params.id);
-	let result = [];
+	const id = (req.params.id);
+	// let result = [];
 
-	if (!isNaN(id)) {
-		result = posts.find(post => post.id == id);
+	// if (!isNaN(id)) {
+	// 	result = posts.find(post => post.id == id);
 
-		res.status(200)
-	}
-	if (result.length == 0 || isNaN(id)) {
-		res.status(404)
-		result = {
-			error: "Not Found",
-			message: "Post non trovato"
-		}
-	}
+	// 	res.status(200)
+	// }
+	// if (result.length == 0 || isNaN(id)) {
+	// 	res.status(404)
+	// 	result = {
+	// 		error: "Not Found",
+	// 		message: "Post non trovato"
+	// 	}
+	// }
+    
 
-
-	res.json(result)
+	res.json(posts.find(post => post.id == id))
 }
 
 
