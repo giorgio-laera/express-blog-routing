@@ -16,22 +16,6 @@ function index(req, res) {
 
 function show(req, res) {
 	const id = (req.params.id);
-	// let result = [];
-
-	// if (!isNaN(id)) {
-	// 	result = posts.find(post => post.id == id);
-
-	// 	res.status(200)
-	// }
-	// if (result.length == 0 || isNaN(id)) {
-	// 	res.status(404)
-	// 	result = {
-	// 		error: "Not Found",
-	// 		message: "Post non trovato"
-	// 	}
-	// }
-    
-
 	res.json(posts.find(post => post.id == id))
 }
 
@@ -39,9 +23,7 @@ function show(req, res) {
 function store(req, res) {
 
 	const newId = posts.at(-1).id + 1;
-	//console.log("newId", newId)
 
-	//console.log(req.body.title)
 	newPost = {
 		id: newId,
 		title: req.body.title,
@@ -49,31 +31,21 @@ function store(req, res) {
 		descrizione: req.body.descrizione
 	}
 	posts.push(newPost)
-	//console.log("posts", posts)
+
 	res.sendStatus(201);
 }
 
 function update(req, res) {
 	const id = (req.params.id);
-	// let result = "";
 	 result = posts.find(post => post.id == id);
-	// if (!result) {
-	// 	res.status(404)
-	// 	return res.json(result = {
-	// 		error: "Not Found",
-	// 		message: "Post non trovato"
-	// 	});
-	// }
 
 
 	result.title = req.body.title;
 	result.content = req.body.content
 	result.image = req.body.image
 	result.tags = req.body.tags
+	
 	res.status(200)
-
-
-	//console.log(result.lenght)
 	res.json(result)
 }
 
@@ -85,14 +57,6 @@ const id = (req.params.id)
 	const content= req.body.content;
 	const image= req.body.img;
 	const tags= req.body.tags;
-
-	// if (!result) {
-	// 	res.status(404)
-	// 	return res.json(result = {
-	// 		error: "Not Found",
-	// 		message: "Post non trovato"
-	// 	});
-	// }
 	
 	if (title){
   		result.title=title;
@@ -115,13 +79,6 @@ function destroy(req, res) {
 	const id = (req.params.id)
 	const postsFiltered = posts.find(post => post.id == id);
 
-	// if (!postsFiltered) {
-	// 	res.status(404)
-	// 	return res.json(result = {
-	// 		error: "Not Found",
-	// 		message: "Post non trovato"
-	// 	});
-	// }
 	posts.splice(posts.indexOf(postsFiltered), 1);
 
 	console.log(`post ${id} eliminato, nuova lista dei post:`, posts);

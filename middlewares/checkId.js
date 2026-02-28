@@ -1,6 +1,7 @@
 const posts = require('../data/posts')
 
-function checkTime (req,res,next){
+function checkId (req,res,next){
+	
     console.log('chiamata ricevuta')
     const id = Number(req.params.id);
     let result = "";
@@ -15,4 +16,4 @@ function checkTime (req,res,next){
 
     next();
 }
-module.exports = checkTime;
+module.exports = checkId;
